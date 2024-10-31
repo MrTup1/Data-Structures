@@ -109,7 +109,7 @@ void analyseCircuit(const Circuit c)
 	}
 	
 	/* Free up memory used by matrices and vectors */
-	destroyMatrix(A);
+	destroyMatrix(&A);
 	destroyVector(Z);
 }
 

@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
 	
 	if (argc == 2)
 	{
-		/* TODO */
+		c = createCircuitFromFile(argv[1]);
+		analyseCircuit(c);
+		destroyCircuit(c);
 	} 
 	else 
 		printf("Syntax: %s <filename>\n", argv[0]);

@@ -16,15 +16,26 @@
 /* Data Structures */
 
 typedef enum {
-/* TODO */
+    resistor,
+    voltage,
+    current
 } CompType;
 
 typedef struct {
-/* TODO */
+    char name[10];          // Name of the component, e.g., "R1", "V1"
+    unsigned int n1;        // First node
+    unsigned int n2;        // Second node
+    double value;           // Value of the component, e.g., resistance in ohms, voltage in volts, etc.
+    CompType type; 
 } Component;
 
 typedef struct {
-/* TODO */
+    unsigned int nN;        // Number of nodes
+    unsigned int nR;        // Number of resistors
+    unsigned int nV;        // Number of voltage sources
+    unsigned int nI;        // Number of current sources
+    unsigned int nC;        // Number of components
+    Component *comp; 
 } Circuit;
 
 /* Interfaces */
