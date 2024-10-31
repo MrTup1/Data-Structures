@@ -12,7 +12,18 @@
 
 Matrix createMatrix(const unsigned int nRows, const unsigned int nCols)
 {
-	/* TODO */
+	double** elements = calloc(nRows * sizeof(double*) + nRows * sizeof(double)*nCols, 1);
+	double* base = (double*)(&elements[nRows]);
+
+	for(size_t i = 0; i < nRows; i++) {
+		elements[i] = base + nCols * i;
+	}
+	if (elements == NULL) {
+		fprintf(stderr, "Allocation Failure");
+		exit(EXIT_FAILURE);
+	}
+	Matrix m = {nRows, nCols, elements};
+	return m;
 }
 
 Matrix createMatrixFromFile(const char *filename)
@@ -53,9 +64,16 @@ Matrix createMatrixFromFile(const char *filename)
 	return m;
 }
 
-void destroyMatrix(Matrix mat)
+void destroyMatrix(Matrix *mat)
 {
-	/* TODO */
+    if (mat->element != NULL) {
+        // Free the single contiguous block
+        free(mat->element);
+        mat->element = NULL;
+    }
+
+    mat->rows = 0;
+    mat->cols = 0;
 }
 
 void printMatrix(const Matrix mat)
